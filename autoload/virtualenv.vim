@@ -26,6 +26,14 @@ function! virtualenv#activate(...)
                     let env_dir = g:virtualenv_directory.'/'.name
                 endif
             endif
+        else
+            for name in virtualenv#names('')
+                let tmp_dir = g:virtualenv_directory . '/' . name
+                if isdirectory(tmp_dir)
+                    let env_dir = tmp_dir
+                    break
+                endif
+            endfor
         endif
     else
         let env_dir = g:virtualenv_directory.'/'.name
